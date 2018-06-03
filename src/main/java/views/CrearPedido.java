@@ -78,12 +78,12 @@ public class CrearPedido extends JFrame {
 		btnCrearCliente.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				try {
-					ClienteDelegate.getInstance().crearCliente(Integer.parseInt(textDNI.getText()), textNombre.getText(), textApellido.getText(), textDomicilio.getText(), textCuit.getText(), textRazon.getText(), Float.parseFloat(textLimite.getText()), Float.parseFloat(textMonto.getText()));
+					//ClienteDelegate.getInstance().crearCliente(Integer.parseInt(textDNI.getText()), textNombre.getText(), textApellido.getText(), textDomicilio.getText(), textCuit.getText(), textRazon.getText(), Float.parseFloat(textLimite.getText()), Float.parseFloat(textMonto.getText()));
 					Component frame1 = null;
-					JOptionPane.showMessageDialog(frame1,"Usuario Creado con Exito.","Sistema",JOptionPane.PLAIN_MESSAGE);
-				} catch (NumberFormatException | RemoteException e1) {
+					JOptionPane.showMessageDialog(frame1,"Pedido creado con exito.","Sistema",JOptionPane.PLAIN_MESSAGE);
+				} catch (NumberFormatException e1) {
 					Component frame = null;
-					JOptionPane.showMessageDialog(frame,"No se pudo crear el usuario.","Error", JOptionPane.ERROR_MESSAGE);
+					JOptionPane.showMessageDialog(frame,"No se pudo el pedido.","Error", JOptionPane.ERROR_MESSAGE);
 				}
 				Menu mn;
 				mn = new Menu();

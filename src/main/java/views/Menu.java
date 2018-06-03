@@ -1,11 +1,17 @@
 package views;
 
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+
+import delegates.ClienteDelegate;
+import delegates.PedidoDelegate;
+
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.rmi.RemoteException;
+import java.awt.Component;
 import java.awt.event.ActionEvent;
 import javax.swing.JTextField;
 
@@ -75,6 +81,14 @@ public class Menu extends JFrame {
         JButton btnAprobarpedido = new JButton("AprobarPedido");
         btnAprobarpedido.addActionListener(new ActionListener() {
         	public void actionPerformed(ActionEvent e) {
+        		try {
+					PedidoDelegate.getInstance().aprobarPedido((Integer.parseInt(txtIngresarIdPedido.getText())));
+					Component frame1 = null;
+					JOptionPane.showMessageDialog(frame1,"El pedido se ha aprobado con exito.","Pedido",JOptionPane.PLAIN_MESSAGE);
+				} catch (NumberFormatException | RemoteException e1) {
+					Component frame = null;
+					JOptionPane.showMessageDialog(frame,"No se pudo aprobar el pedido.","Error", JOptionPane.ERROR_MESSAGE);
+				}
         	}
         });
         btnAprobarpedido.setBounds(237, 179, 187, 23);
@@ -91,7 +105,11 @@ public class Menu extends JFrame {
         contentPane.add(btnVerEstadoDe);
         
         JButton btnListarPedidos = new JButton("Listar Pedidos");
-        btnListarPedidos.setBounds(221, 118, 203, 23);
+        btnListarPedidos.addActionListener(new ActionListener() {
+        	public void actionPerformed(ActionEvent e) {
+        	}
+        });
+        btnListarPedidos.setBounds(237, 118, 187, 23);
         contentPane.add(btnListarPedidos);
     }
 }
