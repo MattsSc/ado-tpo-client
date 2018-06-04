@@ -89,6 +89,7 @@ public class CrearPedido extends JFrame{
                                 itemPedidoDTOS
                         );
                         JOptionPane.showMessageDialog(null, "Pedido creado, Numero de pedido: " + idPedido);
+                        setVisible(false);
                     }else{
 
                         JOptionPane.showMessageDialog(null, "Falta completar los tados o ningun articulo ha sido seleccionado");
