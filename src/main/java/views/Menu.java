@@ -1,50 +1,57 @@
 package views;
 
-import javax.swing.JFrame;
-import javax.swing.JPanel;
-import javax.swing.border.EmptyBorder;
-import javax.swing.JButton;
-import java.awt.event.ActionListener;
-import java.rmi.RemoteException;
+import javax.swing.*;
 import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
-public class Menu extends JFrame {
-
+public class Menu  extends JFrame{
     private JPanel contentPane;
-    /**
-     * Create the frame.
-     */
-    public Menu() {
-        setTitle("Menu Principal");
-        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        setBounds(100, 100, 450, 300);
-        contentPane = new JPanel();
-        contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
-        setContentPane(contentPane);
-        contentPane.setLayout(null);
+    private JButton crearPedidoButton;
+    private JButton listarPedidosRecibidoButton;
+    private JButton aprobarPedidosButton;
+    private JButton rechazarPedidoButton;
+    private JButton crearClienteButton;
+    private JButton listarPedidosDespachablesButton;
+    private JButton listarPedidosPendientesButton;
 
-        JButton btnListarClientes = new JButton("Listar Clientes");
-        btnListarClientes.addActionListener(new ActionListener() {
+    public Menu() {
+        setSize(500,500);
+        setContentPane(contentPane);
+        setLocationRelativeTo(null);
+        crearClienteButton.addActionListener(new ActionListener() {
+            @Override
             public void actionPerformed(ActionEvent e) {
-                ListarClientes lc;
-                lc = new ListarClientes();
-                lc.setVisible(true);
+                JFrame crearCliente = new CrearCliente();
+                crearCliente.setVisible(true);
             }
         });
-        btnListarClientes.setBounds(143, 31, 99, 41);
-        contentPane.add(btnListarClientes);
-
-        JButton btnCrearCliente = new JButton("Crear Cliente");
-        btnCrearCliente.setBounds(10, 11, 123, 23);
-        contentPane.add(btnCrearCliente);
-
-        JButton btnModificarCliente = new JButton("Modificar Cliente");
-        btnModificarCliente.setBounds(10, 40, 123, 23);
-        contentPane.add(btnModificarCliente);
-
-        JButton btnEliminarCliente = new JButton("Eliminar Cliente");
-        btnEliminarCliente.setBounds(10, 68, 123, 23);
-        contentPane.add(btnEliminarCliente);
+        crearPedidoButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                JFrame crearPedido = new CrearPedido();
+                crearPedido.setVisible(true);
+            }
+        });
+        listarPedidosRecibidoButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                JFrame crearCliente = new ListarPedido("RECIBIDO");
+                crearCliente.setVisible(true);
+            }
+        });
+        listarPedidosDespachablesButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                JFrame crearCliente = new ListarPedido("DESPACHABLE");
+                crearCliente.setVisible(true);
+            }
+        });
+        listarPedidosPendientesButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                JFrame crearCliente = new ListarPedido("FALTA_STOCK");
+                crearCliente.setVisible(true);
+            }
+        });
     }
 }
-
