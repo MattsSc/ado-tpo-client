@@ -1,6 +1,7 @@
 package views;
 
 import delegates.PedidoDelegate;
+import dtos.PedidoDTO;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;
@@ -22,19 +23,27 @@ public class CambiarEstadoPedido extends JFrame{
         setContentPane(contentPane);
         setLocationRelativeTo(null);
 
-        if(aprobar){
-           motivoLabel.setVisible(false);
-           motivoTextField.setVisible(false);
-        }
 
         aceptarButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 try {
                     if(aprobar){
-                        PedidoDelegate.getInstance().aprobarPedido(Integer.valueOf(pedidoTextField.getText()));
+                        PedidoDTO aux = null;
+                        aux = PedidoDelegate.getInstance().obtenerPedido(Integer.valueOf(pedidoTextField.getText()));
+                        if (aux != null && aux.getEstado().equals("RECIBIDO")){
+                            PedidoDelegate.getInstance().aprobarPedido(Integer.valueOf(pedidoTextField.getText()),motivoTextField.getText());
+                        }else{
+                            JOptionPane.showMessageDialog(null, "El pedido no esta dentro de los recibidos.");
+                        }
                     }else{
-                        PedidoDelegate.getInstance().rechazarPedido(Integer.valueOf(pedidoTextField.getText()));
+                        PedidoDTO aux = null;
+                        aux = PedidoDelegate.getInstance().obtenerPedido(Integer.valueOf(pedidoTextField.getText()));
+                        if (aux != null && aux.getEstado().equals("RECIBIDO")){
+                            PedidoDelegate.getInstance().rechazarPedido(Integer.valueOf(pedidoTextField.getText()),motivoTextField.getText());
+                        }else{
+                            JOptionPane.showMessageDialog(null, "El pedido no esta dentro de los recibidos.");
+                        }
                     }
                     setVisible(false);
                 } catch (RemoteException e1) {

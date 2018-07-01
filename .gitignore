@@ -80,3 +80,4 @@ local.properties
 .scala_dependencies
 .worksheet
 /tpo-client.iml
+/target/
