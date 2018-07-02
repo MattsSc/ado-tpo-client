@@ -33,7 +33,7 @@ public class ListarPedido extends JFrame {
             CambiarEstadoBtn.setVisible(false);
         }
 
-        String col[] = {"Id", "Cliente", "Estado"};
+        String col[] = {"Id", "Cliente", "Estado", "Precio"};
 
         DefaultTableModel tableModel = new DefaultTableModel(col,0);
         pedidosTable.setModel(tableModel);
@@ -45,7 +45,8 @@ public class ListarPedido extends JFrame {
                 Object[] obj= {
                         pedido.getId(),
                         cliNombre + " " + cliDni,
-                        pedido.getEstado()
+                        pedido.getEstado(),
+                        pedido.getItems().stream().mapToDouble(item-> item.getCantidad()*item.getArticulo().getPrecio()).sum()
                 };
                 tableModel.addRow(obj);
             });
